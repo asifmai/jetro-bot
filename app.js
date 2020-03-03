@@ -33,8 +33,8 @@ const fetchCompaniesDetails = () => new Promise(async (resolve, reject) => {
 const fetchCompanyDetailsCategory = (catIdx) => new Promise(async (resolve, reject) => {
   try {
 
-    for (let i = 0; i < categories[fetchCompanyDetailsCategory].companies.length; i++) {
-      console.log(`${i+1}/${categories[fetchCompanyDetailsCategory].companies.length} - Fetching Companies Details... ${categories[fetchCompanyDetailsCategory].companies[i]}`);
+    for (let i = 0; i < categories[catIdx].companies.length; i++) {
+      console.log(`${i+1}/${categories[catIdx].companies.length} - Fetching Companies Details... ${categories[catIdx].companies[i]}`);
       await fetchCompanyDetailsSingle(catIdx, i);
     }
 
@@ -45,9 +45,22 @@ const fetchCompanyDetailsCategory = (catIdx) => new Promise(async (resolve, reje
   }
 })
 
-const fetchCompanyDetailsSingle = (catIdx) => new Promise(async (resolve, reject) => {
+const fetchCompanyDetailsSingle = (catIdx, compIdx) => new Promise(async (resolve, reject) => {
   let page;
   try {
+    const company = {
+      category: categories[catIdx].category,
+      subCategory: categories[catIdx].subCategory,
+    };
+    page = await pupHelper.launchPage(browser);
+    await page.goto(categories[catIdx].companies[compIdx], {timeout: 0, waitUntil: 'load'});
+    await page.waitForSelector('#elem_heading_lv1 > h1');
+
+    company.events = await pupHelper.getTxt('#elem_heading_lv1 > h1', page);
+    company.website = await pupHelper.getAttr('a.witharrow', 'href', page);
+
+    await page.waitForSelector('.elem_table_basic > table');
+
 
     await page.close();
     resolve(true);
@@ -58,11 +71,16 @@ const fetchCompanyDetailsSingle = (catIdx) => new Promise(async (resolve, reject
   }
 })
 
+const getCellVal = (label, page) => new Promise((resolve, reject) => {
+  
+})
+
+
 
 const fetchCompaniesLinks = () => new Promise(async (resolve, reject) => {
   try {
 
-    for (let i = 0; i < categories.length; i++) {
+    for (let i = 69; i < categories.length; i++) {
       console.log(`${i+1}/${categories.length} - Fetching Companies Links from Category`);
       await fetchCompaniesFromCategory(i);
       fs.writeFileSync('companies.json', JSON.stringify(categories));
@@ -146,3 +164,11 @@ const fetchCategories = () => new Promise(async (resolve, reject) => {
     reject(error);
   }
 });
+
+const saveToFile = (fileName, data) => {
+  if (fs.existsSync(fileName)) {
+    fs.appendFileSync(`,"${data}"`);
+  } else {
+    fs.writeFileSync(`"${data}"`)
+  }
+}
