@@ -5,20 +5,64 @@ let browser;
 const siteLink = "https://www.jetro.go.jp";
 let companies = [];
 let categories = [];
-categories = JSON.parse(fs.readFileSync('categories.json', 'utf8'));
+categories = JSON.parse(fs.readFileSync('companies.json', 'utf8'));
 
 (async () => {
   browser = await pupHelper.launchBrowser();
   // await fetchCategories();
   await fetchCompaniesLinks();
+  // await fetchCompaniesDetails();
   await browser.close();
 })()
+
+const fetchCompaniesDetails = () => new Promise(async (resolve, reject) => {
+  try {
+
+    for (let i = 0; i < categories.length; i++) {
+      console.log(`${i+1}/${categories.length} - Fetching Companies Details from Category`);
+      await fetchCompanyDetailsCategory(i);
+    }
+
+    resolve(true);
+  } catch (error) {
+    console.log(`fetchCompaniesDetails Error: ${error}`);
+    reject(error);
+  }
+})
+
+const fetchCompanyDetailsCategory = (catIdx) => new Promise(async (resolve, reject) => {
+  try {
+
+    for (let i = 0; i < categories[fetchCompanyDetailsCategory].companies.length; i++) {
+      console.log(`${i+1}/${categories[fetchCompanyDetailsCategory].companies.length} - Fetching Companies Details... ${categories[fetchCompanyDetailsCategory].companies[i]}`);
+      await fetchCompanyDetailsSingle(catIdx, i);
+    }
+
+    resolve(true);
+  } catch (error) {
+    console.log(`fetchCompanyDetailsCategory Error: ${error}`);
+    reject(error);
+  }
+})
+
+const fetchCompanyDetailsSingle = (catIdx) => new Promise(async (resolve, reject) => {
+  let page;
+  try {
+
+    await page.close();
+    resolve(true);
+  } catch (error) {
+    await page.close();
+    console.log(`fetchCompanyDetailsSingle Error: ${error}`);
+    reject(error);
+  }
+})
+
 
 const fetchCompaniesLinks = () => new Promise(async (resolve, reject) => {
   try {
 
     for (let i = 0; i < categories.length; i++) {
-    // for (let i = 0; i < 2; i++) {
       console.log(`${i+1}/${categories.length} - Fetching Companies Links from Category`);
       await fetchCompaniesFromCategory(i);
       fs.writeFileSync('companies.json', JSON.stringify(categories));
@@ -35,7 +79,7 @@ const fetchCompaniesFromCategory = (catIdx) => new Promise(async (resolve, rejec
   let page;
   try {
     categories[catIdx].companies = [];
-    page = await pupHelper.launchPage(browser, true);
+    page = await pupHelper.launchPage(browser);
     await page.goto(categories[catIdx].url, {timeout: 0, waitUntil: 'load'});
     await page.waitForSelector('.elem_pagination');
     
@@ -50,12 +94,11 @@ const fetchCompaniesFromCategory = (catIdx) => new Promise(async (resolve, rejec
       if (i > 1) {
         await page.goto(`${categories[catIdx].url}?&dnumber=&sort=&_page=${i}`);
       }
-      await page.waitForSelector('.elem_text_list > ul.var_blocklink > li > a');
+      await page.waitForSelector('.elem_text_list > ul.var_blocklink > li > a', {timeout: 0});
       let pageLinks = await pupHelper.getAttrMultiple('.elem_text_list > ul.var_blocklink > li > a', 'href', page);
       pageLinks = pageLinks.map(pl => siteLink + pl);
       categories[catIdx].companies.push(...pageLinks);
     }
-    console.log(`No of Companies Found in Category: ${categories[catIdx].companies.length}`);
     categories[catIdx].companies = _.uniq(categories[catIdx].companies);
     console.log(`No of Companies Found in Category(after removing duplicates): ${categories[catIdx].companies.length}`);
     
