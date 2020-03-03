@@ -1,0 +1,301 @@
+[{
+    "category": "総合",
+    "subCategory": "総合見本市",
+    "url": "https://www.jetro.go.jp/j-messe/industry/general/001/"
+}, {
+    "category": "基礎産業",
+    "subCategory": "鉱業、エネルギー",
+    "url": "https://www.jetro.go.jp/j-messe/industry/fundamental/002/"
+}, {
+    "category": "基礎産業",
+    "subCategory": "鉱物、土石、ガラス、セラミック",
+    "url": "https://www.jetro.go.jp/j-messe/industry/fundamental/003/"
+}, {
+    "category": "基礎産業",
+    "subCategory": "化学、ゴム、プラスチック、素材類",
+    "url": "https://www.jetro.go.jp/j-messe/industry/fundamental/004/"
+}, {
+    "category": "農林水産・食品",
+    "subCategory": "農林水産物",
+    "url": "https://www.jetro.go.jp/j-messe/industry/agriculture/001/"
+}, {
+    "category": "農林水産・食品",
+    "subCategory": "食・飲料、食品加工",
+    "url": "https://www.jetro.go.jp/j-messe/industry/agriculture/002/"
+}, {
+    "category": "建築",
+    "subCategory": "建築・建設、不動産",
+    "url": "https://www.jetro.go.jp/j-messe/industry/construction/001/"
+}, {
+    "category": "建築",
+    "subCategory": "衛生設備、空調、給排水、照明",
+    "url": "https://www.jetro.go.jp/j-messe/industry/construction/002/"
+}, {
+    "category": "建築",
+    "subCategory": "公共施設用機器・備品、都市計画",
+    "url": "https://www.jetro.go.jp/j-messe/industry/construction/003/"
+}, {
+    "category": "建築",
+    "subCategory": "ビル保守管理、営繕、清掃",
+    "url": "https://www.jetro.go.jp/j-messe/industry/construction/004/"
+}, {
+    "category": "機械・工業技術",
+    "subCategory": "金属製品、工具、金型",
+    "url": "https://www.jetro.go.jp/j-messe/industry/macchinery/001/"
+}, {
+    "category": "機械・工業技術",
+    "subCategory": "工作機械・金属加工",
+    "url": "https://www.jetro.go.jp/j-messe/industry/macchinery/002/"
+}, {
+    "category": "機械・工業技術",
+    "subCategory": "木材加工機械、家具製造機械",
+    "url": "https://www.jetro.go.jp/j-messe/industry/macchinery/003/"
+}, {
+    "category": "機械・工業技術",
+    "subCategory": "マテハン機器、圧力機器",
+    "url": "https://www.jetro.go.jp/j-messe/industry/macchinery/004/"
+}, {
+    "category": "機械・工業技術",
+    "subCategory": "精密・測定・試験機器",
+    "url": "https://www.jetro.go.jp/j-messe/industry/macchinery/005/"
+}, {
+    "category": "機械・工業技術",
+    "subCategory": "電気・電子（製品、機器）",
+    "url": "https://www.jetro.go.jp/j-messe/industry/macchinery/006/"
+}, {
+    "category": "機械・工業技術",
+    "subCategory": "その他の産業用機器・設備",
+    "url": "https://www.jetro.go.jp/j-messe/industry/macchinery/007/"
+}, {
+    "category": "機械・工業技術",
+    "subCategory": "製造・生産技術、品質管理",
+    "url": "https://www.jetro.go.jp/j-messe/industry/macchinery/008/"
+}, {
+    "category": "機械・工業技術",
+    "subCategory": "先端技術、新素材、合成物、R&D",
+    "url": "https://www.jetro.go.jp/j-messe/industry/macchinery/009/"
+}, {
+    "category": "情報・通信",
+    "subCategory": "通信、情報処理、コンピュータ",
+    "url": "https://www.jetro.go.jp/j-messe/industry/ict/001/"
+}, {
+    "category": "情報・通信",
+    "subCategory": "光学、光工学、レーザー技術・機器",
+    "url": "https://www.jetro.go.jp/j-messe/industry/ict/002/"
+}, {
+    "category": "情報・通信",
+    "subCategory": "事務用品・機器、OA機器",
+    "url": "https://www.jetro.go.jp/j-messe/industry/ict/003/"
+}, {
+    "category": "情報・通信",
+    "subCategory": "新聞、放送、映像（映画、フォト）",
+    "url": "https://www.jetro.go.jp/j-messe/industry/ict/004/"
+}, {
+    "category": "輸送・物流・包装",
+    "subCategory": "自動車（部品・製造関連機器含む）",
+    "url": "https://www.jetro.go.jp/j-messe/industry/transportation/001/"
+}, {
+    "category": "輸送・物流・包装",
+    "subCategory": "自動車補修・サービス用品",
+    "url": "https://www.jetro.go.jp/j-messe/industry/transportation/002/"
+}, {
+    "category": "輸送・物流・包装",
+    "subCategory": "自転車、自動二輪車（部品含む）",
+    "url": "https://www.jetro.go.jp/j-messe/industry/transportation/003/"
+}, {
+    "category": "輸送・物流・包装",
+    "subCategory": "海運、造船、港湾関連機器",
+    "url": "https://www.jetro.go.jp/j-messe/industry/transportation/004/"
+}, {
+    "category": "輸送・物流・包装",
+    "subCategory": "ボート、ボート用品、各種小型船舶",
+    "url": "https://www.jetro.go.jp/j-messe/industry/transportation/005/"
+}, {
+    "category": "輸送・物流・包装",
+    "subCategory": "航空・宇宙関連機器、設備",
+    "url": "https://www.jetro.go.jp/j-messe/industry/transportation/006/"
+}, {
+    "category": "輸送・物流・包装",
+    "subCategory": "鉄道、その他の輸送用機器、交通",
+    "url": "https://www.jetro.go.jp/j-messe/industry/transportation/007/"
+}, {
+    "category": "輸送・物流・包装",
+    "subCategory": "物流、貯蔵、保蔵",
+    "url": "https://www.jetro.go.jp/j-messe/industry/transportation/008/"
+}, {
+    "category": "輸送・物流・包装",
+    "subCategory": "包装（資材、関連機器）",
+    "url": "https://www.jetro.go.jp/j-messe/industry/transportation/009/"
+}, {
+    "category": "医療・健康",
+    "subCategory": "医療・病院用機器、医療技術",
+    "url": "https://www.jetro.go.jp/j-messe/industry/medical/001/"
+}, {
+    "category": "医療・健康",
+    "subCategory": "歯科用・眼科用機器・用品",
+    "url": "https://www.jetro.go.jp/j-messe/industry/medical/002/"
+}, {
+    "category": "医療・健康",
+    "subCategory": "福祉・介護・リハビリ用機器・用具",
+    "url": "https://www.jetro.go.jp/j-messe/industry/medical/003/"
+}, {
+    "category": "医療・健康",
+    "subCategory": "医薬品、製薬・製剤、薬学",
+    "url": "https://www.jetro.go.jp/j-messe/industry/medical/004/"
+}, {
+    "category": "医療・健康",
+    "subCategory": "ヘルスケア、保健産業、保健用品",
+    "url": "https://www.jetro.go.jp/j-messe/industry/medical/005/"
+}, {
+    "category": "医療・健康",
+    "subCategory": "フィットネス",
+    "url": "https://www.jetro.go.jp/j-messe/industry/medical/006/"
+}, {
+    "category": "生活",
+    "subCategory": "皮革（素材、製品、機器）、履物",
+    "url": "https://www.jetro.go.jp/j-messe/industry/living/002/"
+}, {
+    "category": "生活",
+    "subCategory": "繊維・衣料（素材、製品、機器）",
+    "url": "https://www.jetro.go.jp/j-messe/industry/living/003/"
+}, {
+    "category": "生活",
+    "subCategory": "紙・紙製品、製紙機械、印刷・出版",
+    "url": "https://www.jetro.go.jp/j-messe/industry/living/004/"
+}, {
+    "category": "生活",
+    "subCategory": "家具・インテリア用品",
+    "url": "https://www.jetro.go.jp/j-messe/industry/living/005/"
+}, {
+    "category": "生活",
+    "subCategory": "家庭用品、食卓用品、陶磁器等",
+    "url": "https://www.jetro.go.jp/j-messe/industry/living/006/"
+}, {
+    "category": "生活",
+    "subCategory": "ギフト用品、手工芸品、販促用品",
+    "url": "https://www.jetro.go.jp/j-messe/industry/living/007/"
+}, {
+    "category": "生活",
+    "subCategory": "時計、カメラ",
+    "url": "https://www.jetro.go.jp/j-messe/industry/living/008/"
+}, {
+    "category": "生活",
+    "subCategory": "宝石、貴金属、アクセサリー",
+    "url": "https://www.jetro.go.jp/j-messe/industry/living/009/"
+}, {
+    "category": "生活",
+    "subCategory": "化粧品、美容関連用品、香水",
+    "url": "https://www.jetro.go.jp/j-messe/industry/living/010/"
+}, {
+    "category": "生活",
+    "subCategory": "子供用品、ベビー用品",
+    "url": "https://www.jetro.go.jp/j-messe/industry/living/011/"
+}, {
+    "category": "生活",
+    "subCategory": "ランドリー、染色",
+    "url": "https://www.jetro.go.jp/j-messe/industry/living/012/"
+}, {
+    "category": "生活",
+    "subCategory": "防災、警備、消防、防衛",
+    "url": "https://www.jetro.go.jp/j-messe/industry/living/013/"
+}, {
+    "category": "生活",
+    "subCategory": "冠婚葬祭、宗教関連",
+    "url": "https://www.jetro.go.jp/j-messe/industry/living/014/"
+}, {
+    "category": "趣味・教育",
+    "subCategory": "音楽（楽器、音盤、楽譜等）",
+    "url": "https://www.jetro.go.jp/j-messe/industry/hobby/001/"
+}, {
+    "category": "趣味・教育",
+    "subCategory": "玩具、遊戯用具、ゲーム用品",
+    "url": "https://www.jetro.go.jp/j-messe/industry/hobby/002/"
+}, {
+    "category": "趣味・教育",
+    "subCategory": "趣味、DIY",
+    "url": "https://www.jetro.go.jp/j-messe/industry/hobby/003/"
+}, {
+    "category": "趣味・教育",
+    "subCategory": "スポーツ（用品・施設）",
+    "url": "https://www.jetro.go.jp/j-messe/industry/hobby/004/"
+}, {
+    "category": "趣味・教育",
+    "subCategory": "アミューズメント（機器・施設）",
+    "url": "https://www.jetro.go.jp/j-messe/industry/hobby/005/"
+}, {
+    "category": "趣味・教育",
+    "subCategory": "教育・訓練、学校用品、文房具",
+    "url": "https://www.jetro.go.jp/j-messe/industry/hobby/006/"
+}, {
+    "category": "趣味・教育",
+    "subCategory": "書籍（ブックフェア）、図書館設備",
+    "url": "https://www.jetro.go.jp/j-messe/industry/hobby/007/"
+}, {
+    "category": "趣味・教育",
+    "subCategory": "美術工芸品、骨董品",
+    "url": "https://www.jetro.go.jp/j-messe/industry/hobby/008/"
+}, {
+    "category": "趣味・教育",
+    "subCategory": "観光・旅行（施設、用品等含む）",
+    "url": "https://www.jetro.go.jp/j-messe/industry/hobby/009/"
+}, {
+    "category": "趣味・教育",
+    "subCategory": "ペット",
+    "url": "https://www.jetro.go.jp/j-messe/industry/hobby/010/"
+}, {
+    "category": "趣味・教育",
+    "subCategory": "園芸・造園",
+    "url": "https://www.jetro.go.jp/j-messe/industry/hobby/011/"
+}, {
+    "category": "サービス",
+    "subCategory": "ホテル、レストラン、ケータリング",
+    "url": "https://www.jetro.go.jp/j-messe/industry/services/001/"
+}, {
+    "category": "サービス",
+    "subCategory": "店舗用設備・機器、ディスプレイ",
+    "url": "https://www.jetro.go.jp/j-messe/industry/services/002/"
+}, {
+    "category": "サービス",
+    "subCategory": "広告、マーケティング、経営管理",
+    "url": "https://www.jetro.go.jp/j-messe/industry/services/003/"
+}, {
+    "category": "サービス",
+    "subCategory": "金融、保険、財務",
+    "url": "https://www.jetro.go.jp/j-messe/industry/services/004/"
+}, {
+    "category": "サービス",
+    "subCategory": "流通業、フランチャイズビジネス",
+    "url": "https://www.jetro.go.jp/j-messe/industry/services/005/"
+}, {
+    "category": "サービス",
+    "subCategory": "地域的ビジネス、地場産業",
+    "url": "https://www.jetro.go.jp/j-messe/industry/services/006/"
+}, {
+    "category": "サービス",
+    "subCategory": "デザイン（工業デザイン）",
+    "url": "https://www.jetro.go.jp/j-messe/industry/services/007/"
+}, {
+    "category": "サービス",
+    "subCategory": "見本市・コンベンション産業関連",
+    "url": "https://www.jetro.go.jp/j-messe/industry/services/008/"
+}, {
+    "category": "サービス",
+    "subCategory": "産業安全、労災、労務管理",
+    "url": "https://www.jetro.go.jp/j-messe/industry/services/009/"
+}, {
+    "category": "サービス",
+    "subCategory": "一覧を見る",
+    "url": "https://www.jetro.go.jp/j-messe/industry/environment/"
+}, {
+    "category": "サービス",
+    "subCategory": "環境、廃棄物処理、リサイクリング",
+    "url": "https://www.jetro.go.jp/j-messe/industry/environment/001/"
+}, {
+    "category": "サービス",
+    "subCategory": "一覧を見る",
+    "url": "https://www.jetro.go.jp/j-messe/industry/others/"
+}, {
+    "category": "サービス",
+    "subCategory": "その他",
+    "url": "https://www.jetro.go.jp/j-messe/industry/others/001/"
+}]
