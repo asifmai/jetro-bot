@@ -8,7 +8,7 @@ let categories = [];
 categories = JSON.parse(fs.readFileSync('categories.json', 'utf8'));
 
 (async () => {
-  browser = await pupHelper.launchBrowser(true);
+  browser = await pupHelper.launchBrowser();
   // await fetchCategories();
   await fetchCompaniesLinks();
   await browser.close();
