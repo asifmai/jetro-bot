@@ -43,7 +43,7 @@ const fetchCompaniesDetails = () => new Promise(async (resolve, reject) => {
 const fetchCompanyDetailsSingle = (compIdx) => new Promise(async (resolve, reject) => {
   let page;
   try {
-    page = await pupHelper.launchPage(browser);
+    page = await pupHelper.launchPage(browser, true);
     await page.goto(companies[compIdx].url, {timeout: 0, waitUntil: 'load'});
     await page.waitForSelector('#elem_heading_lv1 > h1');
 
@@ -91,8 +91,11 @@ const getCellVal = (label, page, fetchUrl = false) => new Promise(async (resolve
       const propLabel = await props[i].$eval('th', elm => elm.innerText.trim().toLowerCase());
       if (propLabel == label.toLowerCase()) {
         if (fetchUrl) {
-          returnVal = await props[i].$eval('td a', elm => elm.getAttribute('href'));
-          returnVal = siteLink + returnVal;
+          const haveLink = await props[i].$('td a');
+          if (haveLink) {
+            returnVal = await props[i].$eval('td a', elm => elm.getAttribute('href'));
+            returnVal = siteLink + returnVal;
+          } 
         } else {
           returnVal = await props[i].$eval('td', elm => elm.innerText); 
         }
