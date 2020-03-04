@@ -8,7 +8,6 @@ let companies = [];
 companies = JSON.parse(fs.readFileSync('companiesfinal.json', 'utf8'));
 let categories = [];
 // categories = JSON.parse(fs.readFileSync('companies.json', 'utf8'));
-let allcompanies = [];
 
 (async () => {
   browser = await pupHelper.launchBrowser();
@@ -22,15 +21,10 @@ let allcompanies = [];
 const fetchCompaniesDetails = () => new Promise(async (resolve, reject) => {
   try {
     if (!fs.existsSync('companies')) fs.mkdirSync('companies');
-    if (fs.existsSync('allcompanies.csv')) allcompanies = JSON.parse(`[${fs.readFileSync('allcompanies.csv')}]`);
 
     for (let i = 0; i < companies.length; i++) {
       console.log(`${i+1}/${companies.length} - Fetching Companies Details from ${companies[i].url}`);
-      if (!allcompanies.includes(companies[i].url)) {
-        await fetchCompanyDetailsSingle(i);
-      } else {
-        console.log(`Company already scraped...`);
-      }
+      await fetchCompanyDetailsSingle(i);
     }
 
     resolve(true);
@@ -68,9 +62,8 @@ const fetchCompanyDetailsSingle = (compIdx) => new Promise(async (resolve, rejec
     companies[compIdx].frequency = await getCellVal('開催頻度', page);
     companies[compIdx].history = await getCellVal('過去の実績', page);
 
-    const compFileName = path.resolve(__dirname, `companies/${companies[compIdx].url.split('/').pop()}.json`);
+    const compFileName = path.resolve(__dirname, `companies/${compIdx}.json`);
     fs.writeFileSync(compFileName, JSON.stringify(companies[compIdx]));
-    saveToFile('allcompanies.csv', companies[compIdx].url);
 
     await page.waitFor(2000);
     await page.close();
