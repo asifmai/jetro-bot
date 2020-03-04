@@ -14,9 +14,21 @@ let categories = [];
   // await fetchCategories();
   // await fetchCompaniesLinks();
   // await arrangeCompanies();
-  await fetchCompaniesDetails();
+  // await fetchCompaniesDetails();
+  await createCsv();
   await browser.close();
 })()
+
+const createCsv = async () => {
+  if (fs.existsSync('finalresults.csv')) fs.unlinkSync('finalresults.csv');
+  fs.writeFileSync('finalresults.csv', '"SN","Category","Sub Category","URL","events","Website","From","To","Area","Facility Name","Facility Url","Item","For Visitor","Organizer","Frequency","History"\n');
+  const files = fs.readdirSync('companies');
+  for (let file = 0; file < files.length; file++) {
+    const co = JSON.parse(fs.readFileSync(`companies/${files[file]}`));
+    const csvLine = `"${file+1}","${co.category}","${co.subCategory}","${co.url}","${co.events}","${co.website}","${co.from}","${co.to}","${co.area}","${co.facilityName}","${co.facilityUrl}","${co.item}","${co.forVisitor}","${co.organizar}","${co.frequency}","${co.history}"\n`;
+    fs.appendFileSync('finalresults.csv', csvLine);  
+  }
+} 
 
 const fetchCompaniesDetails = () => new Promise(async (resolve, reject) => {
   try {
