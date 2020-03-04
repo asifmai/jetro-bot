@@ -1,26 +1,36 @@
 const pupHelper = require('./puppeteerhelper');
 const fs = require('fs');
 const _ = require('underscore');
+const path = require('path');
 let browser;
 const siteLink = "https://www.jetro.go.jp";
 let companies = [];
+companies = JSON.parse(fs.readFileSync('companiesfinal.json', 'utf8'));
 let categories = [];
-categories = JSON.parse(fs.readFileSync('companies.json', 'utf8'));
+// categories = JSON.parse(fs.readFileSync('companies.json', 'utf8'));
+let allcompanies = [];
 
 (async () => {
   browser = await pupHelper.launchBrowser();
   // await fetchCategories();
-  await fetchCompaniesLinks();
-  // await fetchCompaniesDetails();
+  // await fetchCompaniesLinks();
+  // await arrangeCompanies();
+  await fetchCompaniesDetails();
   await browser.close();
 })()
 
 const fetchCompaniesDetails = () => new Promise(async (resolve, reject) => {
   try {
+    if (!fs.existsSync('companies')) fs.mkdirSync('companies');
+    if (fs.existsSync('allcompanies.csv')) allcompanies = JSON.parse(`[${fs.readFileSync('allcompanies.csv')}]`);
 
-    for (let i = 0; i < categories.length; i++) {
-      console.log(`${i+1}/${categories.length} - Fetching Companies Details from Category`);
-      await fetchCompanyDetailsCategory(i);
+    for (let i = 0; i < companies.length; i++) {
+      console.log(`${i+1}/${companies.length} - Fetching Companies Details from ${companies[i].url}`);
+      if (!allcompanies.includes(companies[i].url)) {
+        await fetchCompanyDetailsSingle(i);
+      } else {
+        console.log(`Company already scraped...`);
+      }
     }
 
     resolve(true);
@@ -28,40 +38,41 @@ const fetchCompaniesDetails = () => new Promise(async (resolve, reject) => {
     console.log(`fetchCompaniesDetails Error: ${error}`);
     reject(error);
   }
-})
+});
 
-const fetchCompanyDetailsCategory = (catIdx) => new Promise(async (resolve, reject) => {
-  try {
-
-    for (let i = 0; i < categories[catIdx].companies.length; i++) {
-      console.log(`${i+1}/${categories[catIdx].companies.length} - Fetching Companies Details... ${categories[catIdx].companies[i]}`);
-      await fetchCompanyDetailsSingle(catIdx, i);
-    }
-
-    resolve(true);
-  } catch (error) {
-    console.log(`fetchCompanyDetailsCategory Error: ${error}`);
-    reject(error);
-  }
-})
-
-const fetchCompanyDetailsSingle = (catIdx, compIdx) => new Promise(async (resolve, reject) => {
+const fetchCompanyDetailsSingle = (compIdx) => new Promise(async (resolve, reject) => {
   let page;
   try {
-    const company = {
-      category: categories[catIdx].category,
-      subCategory: categories[catIdx].subCategory,
-    };
     page = await pupHelper.launchPage(browser);
-    await page.goto(categories[catIdx].companies[compIdx], {timeout: 0, waitUntil: 'load'});
+    await page.goto(companies[compIdx].url, {timeout: 0, waitUntil: 'load'});
     await page.waitForSelector('#elem_heading_lv1 > h1');
 
-    company.events = await pupHelper.getTxt('#elem_heading_lv1 > h1', page);
-    company.website = await pupHelper.getAttr('a.witharrow', 'href', page);
+    companies[compIdx].events = await pupHelper.getTxt('#elem_heading_lv1 > h1', page);
+    companies[compIdx].website = await pupHelper.getAttr('a.witharrow', 'href', page);
+    companies[compIdx].from = '';
+    companies[compIdx].to = '';
 
-    await page.waitForSelector('.elem_table_basic > table');
+    const dt = await getCellVal('会期', page);
+    if (dt !== '') {
+      const twoDates = dt.split('～');
+      companies[compIdx].from = twoDates[0].trim();
+      companies[compIdx].to = twoDates[1].trim();
+    }
 
+    companies[compIdx].area = await getCellVal('開催地', page);
+    companies[compIdx].facilityName = await getCellVal('会場', page);
+    companies[compIdx].facilityUrl = await getCellVal('会場', page, true);
+    companies[compIdx].item = await getCellVal('出展対象品目', page);
+    companies[compIdx].forVisitor = await getCellVal('ご来場の方へ', page);
+    companies[compIdx].organizar = await getCellVal('主催者', page);
+    companies[compIdx].frequency = await getCellVal('開催頻度', page);
+    companies[compIdx].history = await getCellVal('過去の実績', page);
 
+    const compFileName = path.resolve(__dirname, `companies/${companies[compIdx].url.split('/').pop()}.json`);
+    fs.writeFileSync(compFileName, JSON.stringify(companies[compIdx]));
+    saveToFile('allcompanies.csv', companies[compIdx].url);
+
+    await page.waitFor(5000);
     await page.close();
     resolve(true);
   } catch (error) {
@@ -71,10 +82,44 @@ const fetchCompanyDetailsSingle = (catIdx, compIdx) => new Promise(async (resolv
   }
 })
 
-const getCellVal = (label, page) => new Promise((resolve, reject) => {
-  
+const getCellVal = (label, page, fetchUrl = false) => new Promise(async (resolve, reject) => {
+  try {
+    let returnVal = '';
+    await page.waitForSelector('.elem_table_basic > table tr');
+    const props = await page.$$('.elem_table_basic > table tr');
+    for (let i = 0; i < props.length; i++) {
+      const propLabel = await props[i].$eval('th', elm => elm.innerText.trim().toLowerCase());
+      if (propLabel == label.toLowerCase()) {
+        if (fetchUrl) {
+          returnVal = await props[i].$eval('td a', elm => elm.getAttribute('href'));
+          returnVal = siteLink + returnVal;
+        } else {
+          returnVal = await props[i].$eval('td', elm => elm.innerText); 
+        }
+        break;
+      }
+    };
+
+    resolve(returnVal);
+  } catch (error) {
+    console.log(`getCellVal[${label}] Error: ${error.message}`);
+    reject(error);
+  }
 })
 
+const arrangeCompanies = () => new Promise((resolve, reject) => {
+  for (let i = 0; i < categories.length; i++) {
+    for (let j = 0; j < categories[i].companies.length; j++) {
+      const company = {
+        category: categories[i].category,
+        subCategory: categories[i].subCategory,
+        url: categories[i].companies[j]
+      }
+      companies.push(company);
+    };
+  };
+  fs.writeFileSync('companiesfinal.json', JSON.stringify(companies));
+});
 
 
 const fetchCompaniesLinks = () => new Promise(async (resolve, reject) => {
@@ -167,8 +212,8 @@ const fetchCategories = () => new Promise(async (resolve, reject) => {
 
 const saveToFile = (fileName, data) => {
   if (fs.existsSync(fileName)) {
-    fs.appendFileSync(`,"${data}"`);
+    fs.appendFileSync(fileName, `,"${data}"`);
   } else {
-    fs.writeFileSync(`"${data}"`)
+    fs.writeFileSync(fileName, `"${data}"`)
   }
 }
