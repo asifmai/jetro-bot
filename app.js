@@ -72,12 +72,12 @@ const fetchCompanyDetailsSingle = (compIdx) => new Promise(async (resolve, rejec
     fs.writeFileSync(compFileName, JSON.stringify(companies[compIdx]));
     saveToFile('allcompanies.csv', companies[compIdx].url);
 
-    await page.waitFor(5000);
+    await page.waitFor(2000);
     await page.close();
     resolve(true);
   } catch (error) {
     await page.close();
-    console.log(`fetchCompanyDetailsSingle Error: ${error}`);
+    console.log(`fetchCompanyDetailsSingle[${companies[compIdx].url}] Error: ${error}`);
     reject(error);
   }
 })
